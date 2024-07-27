@@ -5,13 +5,15 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username: { type: String, required: true },
     password: { type: String, required: true },
-    email: {
-        mail: { type: String, required: true },  
-        valid: { type: Boolean, default: false } 
-    }
+    email: { 
+        type: String, 
+        required: true, 
+        unique: true, 
+        lowercase: true // Ensures emails are stored in lowercase
+    },
+    emailValid: { type: Boolean, default: false } // Separate field for email validity
 });
 
-// Create a model based on the schema
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('Users', userSchema);
 
 module.exports = User;

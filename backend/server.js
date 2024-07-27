@@ -1,15 +1,9 @@
+require("dotenv").config();
 const express =require('express')
 const mongoose = require('mongoose');// Middleware// Middleware
-app.use(express.json()); // Parse JSON bodies
-app.use(express.urlencoded({ extended: true }));
-
-app.use(express.json()); // Parse JSON bodies
-app.use(express.urlencoded({ extended: true }));
-
-require("dotenv").config();
-
-const app = express();
-const PORT = process.env.PORT || 4000;
+const app = express()
+const userRoute=require("./routes/userRoutes")
+const postRoute=require('./routes/postRoutes')
 
 // Middleware
 app.use(express.json()); // Parse JSON bodies
@@ -25,9 +19,16 @@ mongoose.connect(process.env.MONGODB_URI)
   console.error("Error connecting to MongoDB", err);
 });
 
-// Define routes (to be added later)
+// Define routes 
+app.use("/user",userRoute);
+app.use("/post",postRoute);
 
-// Start server
+app.get("/",(req,res)=>{
+  res.send("done");
+})
+
+
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
