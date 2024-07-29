@@ -3,6 +3,7 @@ const router = express.Router();
 const Comment = require('../model/comment');
 const varifyToken=require("../middlewares/varifyToken");
 const chackBelong=require("../middlewares/chackBelong");
+const authenticateToken = require('../middlewares/varifyToken');
 
 // Create Comment
 router.post('/',varifyToken, async (req, res) => {
@@ -60,7 +61,7 @@ router.put('/:id',varifyToken,chackBelong, async (req, res) => {
 });
 
 // Delete Comment
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',authenticateToken,chackBelong, async (req, res) => {
     const { id } = req.params;
     try {
         const comment = await Comment.findByIdAndDelete(id);
