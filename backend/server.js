@@ -4,7 +4,7 @@ const mongoose = require('mongoose');// Middleware// Middleware
 const app = express()
 const userRoute=require("./routes/userRoutes")
 const postRoute=require('./routes/postRoutes')
-
+const commentRoute=require("./routes/commentRoutes")
 // Middleware
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +22,7 @@ mongoose.connect(process.env.MONGODB_URI)
 // Define routes 
 app.use("/user",userRoute);
 app.use("/post",postRoute);
+app.use("/comment",commentRoute);
 
 app.get("/",(req,res)=>{
   res.send("done");
