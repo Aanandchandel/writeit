@@ -9,9 +9,9 @@ const userSchema = new Schema({
         type: String, 
         required: true, 
         unique: true, 
-        lowercase: true // Ensures emails are stored in lowercase
+        lowercase: true 
     },
-    emailValid: { type: Boolean, default: false } // Separate field for email validity
+    emailValid: { type: Boolean, default: false } 
 });
 
 const User = mongoose.model('Users', userSchema);
