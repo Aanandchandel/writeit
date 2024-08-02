@@ -1,16 +1,16 @@
 import "./Login.scss"
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ProfilePic from "../../static/profile.png"
 const Login=()=>{
 
     const [Showpassword,setShowpassword]=useState("password")
     return <div className="Login" >
 
 
-
 <div className="formbox" >
     <div className="formheading">
-        <img src="https://emilus.themenate.net/img/logo.png" alt="icon"/>
+        <img src={ProfilePic} alt="icon"/>
         <p>don't have an account yet? <span><Link>Sign Up</Link></span></p>
     </div>
 
